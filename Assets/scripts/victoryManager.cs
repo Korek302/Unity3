@@ -7,19 +7,18 @@ using UnityStandardAssets._2D;
 
 public class victoryManager : MonoBehaviour
 {
-    public int LvlNo;
     public GameObject PlayAgainButton;
-    public Button PlayAgainButton2;
     public GameObject LvlFinishPanel;
-    public Platformer2DUserControl PlayerController;
+    public GameObject VictoryPanel;
+    public GameObject Player;
     public Animator Animator;
     private const int finalLvl = 2;
 
     private void Start()
     {
-        PlayAgainButton.SetActive(false);
         LvlFinishPanel.SetActive(false);
-        PlayAgainButton2.onClick.AddListener
+        VictoryPanel.SetActive(false);
+        PlayAgainButton.GetComponent<Button>().onClick.AddListener
         (
             () => { RestartGame(); }
         );
@@ -29,31 +28,38 @@ public class victoryManager : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            PlayerController.movingEnabled = false;
+            Player.GetComponent<Platformer2DUserControl>().movingEnabled = false;
             Animator.speed = 0;
 
-            if(LvlNo == finalLvl)
+            if (ValueContainer.Container.CurrLvl == finalLvl)
             {
-                PlayAgainButton.SetActive(true);
+                VictoryPanel.SetActive(true);
             }
             else
             {
                 LvlFinishPanel.SetActive(true);
                 StartCoroutine("jumpToNewLayer");
             }
+            ValueContainer.Container.CurrLvl = 1;
         }
     }
 
     public void RestartGame()
     {
-        LvlNo = 1;
-        SceneManager.LoadScene("GameLvl" + LvlNo);
+        ValueContainer.Container.CurrLvl = 1;
+        SceneManager.LoadScene("GameLvl" + ValueContainer.Container.CurrLvl);
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     IEnumerator jumpToNewLayer()
     {
         yield return new WaitForSeconds(2.0f);
-        LvlNo++;
-        SceneManager.LoadScene("GameLvl" + LvlNo);
+        ValueContainer.Container.CurrLvl++;
+        ValueContainer.Container.Hearts = Player.GetComponent<hpManager>().GetHearts();
+        SceneManager.LoadScene("GameLvl" + ValueContainer.Container.CurrLvl);
     }
 }

@@ -289,9 +289,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\scripts\ButtonColorChange.cs" />
+    <Compile Include="Assets\scripts\CoinManager.cs" />
+    <Compile Include="Assets\scripts\FallRestarter.cs" />
     <Compile Include="Assets\scripts\hpManager.cs" />
     <Compile Include="Assets\scripts\MainMenuManager.cs" />
-    <Compile Include="Assets\scripts\test.cs" />
+    <Compile Include="Assets\scripts\TransSceneController.cs" />
+    <Compile Include="Assets\scripts\ValueContainer.cs" />
     <Compile Include="Assets\scripts\victoryManager.cs" />
   </ItemGroup>
   <ItemGroup>
