@@ -11,7 +11,7 @@ public class TransSceneController : MonoBehaviour
     void Awake ()
     {
         ScoreText.text = "Score: " + ValueContainer.Container.Score;
-        for(int i = Hearts.Length - 1; i > ValueContainer.Container.Hearts; i--)
+        for(int i = Hearts.Length - 1; i >= ValueContainer.Container.Hearts; i--)
         {
             Hearts[i].SetActive(false);
         }

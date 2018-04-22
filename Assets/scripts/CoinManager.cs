@@ -7,7 +7,7 @@ public class CoinManager : MonoBehaviour
 {
     public Text ScoreText;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         ValueContainer.Container.Score += 10;
         ScoreText.text = "Score: " + ValueContainer.Container.Score;

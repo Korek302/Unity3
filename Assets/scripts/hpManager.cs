@@ -60,13 +60,14 @@ public class hpManager : MonoBehaviour
 
     public void BackToMenu()
     {
+        ValueContainer.Container.CurrLvl = 1;
         SceneManager.LoadScene("MainMenu");
     }
 
     private void knockBack()
     {
         StartCoroutine("haltMovement");
-        Vector2 vector = new Vector2(Random.Range(-10.0f, -1.0f), Random.Range(0.0f, 6.0f));
+        Vector2 vector = new Vector2(Random.Range(-10.0f, -5.0f), Random.Range(0.0f, 6.0f));
         CharacterBody.velocity = vector;
     }
 
